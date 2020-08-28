@@ -1,5 +1,5 @@
 # secure-communication
-Secure p2p communication with diffie-hellman key exchange and a encryption algorithm
+Secure P2P communication, via public key exchange ([Diffie-Hellman key exchange](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange)) and encryption algorithms.
 
 ## Background
 This project is our [BMA](https://www.bms-zuerich.ch/schule/aktivitaeten/berufsmaturitaetsarbeiten) and a collaboartion betwean Andràs Horber and me (Till Studer).
