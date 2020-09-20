@@ -1,1 +1,3 @@
-black
+# Here comes everything needed for development
+flake8
+autopep8
