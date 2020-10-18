@@ -24,7 +24,7 @@ class DiffieHellman():
         self.n = n
         self.g = g
 
-    def gen_private_key():
+    def gen_private_key(self):
         private_key = random.randint(5, 10)
         return private_key
 
