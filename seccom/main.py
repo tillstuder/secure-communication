@@ -20,7 +20,7 @@ if mode == real:
     my_private_key = dh.gen_private_key()
     my_public_key = dh.gen_public_key(my_private_key)
     print("My Public Key:\n--------------\n{}\n--------------\n".format(my_public_key))
-    
+
     key = dh.gen_key(my_private_key, input("My Peer's public Key: "))
     print(key)
 

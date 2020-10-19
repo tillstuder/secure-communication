@@ -24,7 +24,7 @@ class DiffieHellman():
         self.n = n
         self.g = g
 
-    def gen_private_key():
+    def gen_private_key(self):
         private_key = random.randint(5, 10)
         return private_key
 
@@ -42,6 +42,7 @@ def _theory():
     g = random.randint(0, 9)
 
     # "The number (n − l)/2 should also be a prime [1253]." Page 298 "Applied Cryptography" Bruce Schneier
+    
     n = 1001000000000000
 
     alice_private_key = random.randint(5, 10)
@@ -55,3 +56,5 @@ def _theory():
 
     assert k_alice == k_bob
     print(k_alice == k_bob)
+
+
