@@ -1,8 +1,6 @@
 import random
 
-# RFC 3526 - More Modular Exponential (MODP) Diffie-Hellman groups for
-# Internet Key Exchange (IKE) https://tools.ietf.org/html/rfc3526
-
+# [More Modular Exponential (MODP) Diffie-Hellman groups for Internet Key Exchange (IKE)](https://tools.ietf.org/html/rfc3526)
 primes = {
 
     # 1536-bit
