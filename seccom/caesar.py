@@ -1,19 +1,18 @@
-"""
-Use the Ceasar Cipher Service like this:
-
-cc = CaesarCipher(message, key)
-    message needs to be a String
-    key needs to be an integer
-
-With the Service you can:
-    encrypt messages:
-    cc.encrypt()
-
-    decrypt messages:
-    cc.decrypt()
-"""
-
 class CaesarCipher():
+    """
+    Use the Ceasar Cipher Service like this:
+
+    cc = CaesarCipher(message, key)
+        message needs to be a String
+        key needs to be an integer
+
+    With the Service you can:
+        encrypt messages:
+        cc.encrypt()
+
+        decrypt messages:
+        cc.decrypt()
+    """
     def __init__(self, message, shift):
         self.message = message
         self.shift = shift
