@@ -1,16 +1,16 @@
 """
 Use the Ceasar Cipher Service like this:
 
-cc = CaesarCipher(m, i)
-    m needs to be a Message
-    i needs to be an integer
+cc = CaesarCipher(message, key)
+    message needs to be a String
+    key needs to be an integer
 
 With the Service you can:
     encrypt messages:
-    cc.encrypt(m,i)
+    cc.encrypt()
 
     decrypt messages:
-    cc.decrypt(m,i)
+    cc.decrypt()
 """
 
 class CaesarCipher():
@@ -39,25 +39,3 @@ class CaesarCipher():
             else:
                 result += chr((ord(letter) - self.shift - 97) % 26 + 97)
         return result
-
-
-
-# insert following into main.py
-
-message = input("Please enter your Text: ") #encrypted or decrypted message
-shift = int(input("Enter a shift number: ")) # Must be the same on both sites
-
-encrypt = "encrypt"
-decrypt = "decrypt"
-mode = input("Please select the mode [{}/{}]: ".format(encrypt, decrypt))
-assert mode == encrypt or mode == decrypt  # Validting the user input
-
-cc = CaesarCipher(message,shift)
-
-if mode == encrypt:
-    print ("Klartext: " + message)
-    print ("Verschlüsselter Text: " + cc.encrypt())
-else:
-    print ("Verschlüsselter Text: " + message)
-    print ("klartext: " + cc.decrypt())
-

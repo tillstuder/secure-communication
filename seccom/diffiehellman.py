@@ -54,7 +54,7 @@ class DiffieHellman():
         dh.get_public_key()
 
         generate the shared key:
-        dh.dh.get_shared_key(peer_public_key)
+        dh.get_shared_key(peer_public_key)
 
     The private key is stored in the Service instance as self.private_key
     """
