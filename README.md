@@ -22,6 +22,8 @@ The programming language we will use is what the TI-Nspire supports, i.e. `pytho
 `python -m pip install --upgrade pip`
 4. install the dev dependencies
 `pip install -r requirements-dev.txt`
+5. add the env variables to your environment
+`export $(xargs < .env)`
 
 ### Optional
 1. Use [pyenv](https://github.com/pyenv/pyenv) to manage your python versions
