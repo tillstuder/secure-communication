@@ -57,7 +57,7 @@ class DiffieHellman():
 
         generate the shared key:
         dh.dh.get_shared_key(peer_public_key)
-    
+
     The private key is stored in the Service instance as self.private_key
     """
 
@@ -71,6 +71,7 @@ class DiffieHellman():
             raise Exception("Group not supported")
 
         # generating the private key
+        # WARNING: This does not use truely random numbers like random.SystemRandom() would provide, since its built for MicorPython
         self.private_key = "%064x" % random.randrange(10**80)
         self.private_key = self.private_key[:64]  # limit string to 64 characters
         self.private_key = int(self.private_key, 16)  # converting hex to int
@@ -87,7 +88,6 @@ class DiffieHellman():
         # peer_public_key^priv_key mod n
         key = pow(int(peer_public_key), int(self.private_key), int(self.n))
         return key
-
 
 
 # def _theory():
