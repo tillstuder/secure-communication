@@ -1,15 +1,12 @@
 [![GitHub license](https://img.shields.io/github/license/tillstud/secure-communication)](https://github.com/tillstud/secure-communication/blob/master/LICENSE)
 [![GitHub contributors](https://img.shields.io/github/contributors/tillstud/secure-communication)](https://github.com/tillstud/secure-communication/graphs/contributors)
-
 [![GitHub pull-requests](https://img.shields.io/github/issues-pr/tillstud/secure-communication)](https://github.com/tillstud/secure-communication/pulls)
 [![GitHub pull-requests closed](https://img.shields.io/github/issues-pr-closed/tillstud/secure-communication)](https://github.com/tillstud/secure-communication/pulls)
-<!-- [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) -->
-
 [![GitHub issues](https://img.shields.io/github/issues/tillstud/secure-communication)](https://github.com/tillstud/secure-communication/issues)
 [![GitHub issues-closed](https://img.shields.io/github/issues-closed/tillstud/secure-communication)](https://github.com/tillstud/secure-communication/issues?q=is%3Aissue+is%3Aclosed)
 
 # secure-communication
-Secure P2P communication, via public key exchange ([Diffie-Hellman key exchange](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange)) and encryption algorithms.
+Secure P2P communication, via public key exchange and multiple cyphers.
 
 ## Background
 This project is our [BMA](https://www.bms-zuerich.ch/schule/aktivitaeten/berufsmaturitaetsarbeiten) and a collaboartion betwean [andrashorber](https://github.com/andrashorber) and [me](https://github.com/tillstud).
