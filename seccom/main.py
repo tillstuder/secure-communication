@@ -1,6 +1,7 @@
 # Python Reference: https://docs.python.org/3.4/library/
 from seccom.diffiehellman import DiffieHellman
 from seccom.caesar import CaesarCipher
+from seccom.enigma import EnigmaCipher
 
 # Mode selection loop until mode valid
 while True:
@@ -23,7 +24,7 @@ if mode == "real":
     my_public_key = dh.get_public_key()
     print("My Public Key:\n--------------\n{}\n--------------\n".format(my_public_key))
 
-    peer_public_key = input("My Peers public Key: ")
+    peer_public_key = int(input("My Peers public Key: "))
     key = dh.get_shared_key(peer_public_key)
     print("Our Shared Key:\n--------------\n{}\n--------------\n".format(key))
 
@@ -91,11 +92,11 @@ while True:
                 "Deine entschlüsselte Nachricht:\n-----------\n{}\n-----------\n".format(text))
 
     if cypher == "2":
-        cc = CaesarCipher(message, key)
+        ec = EnigmaCipher(key, peer_public_key, my_public_key, message, mode)
         if crypt_type == "1":
-            text = cc.encrypt()
-            print("Deine verschlüsselte Nachricht:\n-----------\nCaesar Cypher:\n{}\n-----------\nBitte sende diesen Text an deinen Partner".format(text))
+            text = ec.encrypt()
+            print("Deine verschlüsselte Nachricht:\n-----------\nEnigma Cypher:\n{}\n-----------\nBitte sende diesen Text an deinen Partner".format(text))
         else:
-            text = cc.decrypt()
+            text = ec.decrypt()
             print(
                 "Deine entschlüsselte Nachricht:\n-----------\n{}\n-----------\n".format(text))
