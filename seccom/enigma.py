@@ -65,7 +65,7 @@ class EnigmaCipher():
 
     def decrypt(self):
         result = ""
-        if self.mode == "real":
+        if self.mode == "real":  # Checking mode for setting Rotor Positions
             r1shift = self.pos1
             r2shift = self.pos3
             r3shift = self.pos2
