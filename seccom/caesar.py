@@ -17,7 +17,6 @@ class CaesarCipher():
     def __init__(self, message, shift):
         self.message = message
         self.shift = shift
-        
 
     def encrypt(self):
         result = ""
