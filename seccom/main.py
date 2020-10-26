@@ -22,11 +22,11 @@ if mode == "real":
 
     # Creating the keys
     my_public_key = dh.get_public_key()
-    print("My Public Key:\n--------------\n{}\n--------------\n".format(my_public_key))
+    print("My Public Key:\n--------------\n{}\n--------------\n ".format(my_public_key))
 
     peer_public_key = int(input("My Peers public Key: "))
     key = dh.get_shared_key(peer_public_key)
-    print("Our Shared Key:\n--------------\n{}\n--------------\n".format(key))
+    print("Our Shared Key:\n--------------\n{}\n--------------\n ".format(key))
 
 if mode == "demo":
     # instantiating the DiffieHellman services
@@ -35,11 +35,11 @@ if mode == "demo":
 
     # Creating the keys
     my_public_key = my_dh.get_public_key()
-    print("My Public Key:\n--------------\n{}\n--------------\n".format(my_public_key))
+    print("My Public Key:\n--------------\n{}\n--------------\n ".format(my_public_key))
 
     peer_public_key = partner_dh.get_public_key()
     key = my_dh.get_shared_key(peer_public_key)
-    print("Our Shared Key:\n--------------\n{}\n--------------\n".format(key))
+    print("Our Shared Key:\n--------------\n{}\n--------------\n ".format(key))
 
 
 # infinite Loop While Session is Running
@@ -48,7 +48,7 @@ while True:
     while True:
         cypherlist = ["1", "2", "3", "x"]  # Define cypher list
         # Print Cypher modes
-        print("1: Caesar Cypher\n2: Enigma Cypher\n3: RSA Cypher\nx: End Session")
+        print("1: Caesar Cypher\n2: Enigma Cypher\n3: DES Cypher\nx: End Session")
         # Get users Cypher
         cypher = input("Please select your mode [1, 2, 3, x]: ")
 
@@ -78,7 +78,8 @@ while True:
             print("Type unknown!")
 
     # Define Message
-    message = input("Please enter your Message here:\n")
+    print("Please enter your Message here:)
+    message = input()
 
     # Run Caesar Cypher
     if cypher == "1":
@@ -91,6 +92,7 @@ while True:
             print(
                 "Deine entschlüsselte Nachricht:\n-----------\n{}\n-----------\n".format(text))
 
+    # Run Enigma Cypher
     if cypher == "2":
         ec = EnigmaCipher(key, peer_public_key, my_public_key, message, mode)
         if crypt_type == "1":
