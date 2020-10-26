@@ -58,6 +58,7 @@ class DiffieHellman():
 
     The private key is stored in the Service instance as self.private_key
     """
+    # Theory: https://www.youtube.com/watch?v=Yjrfm_oRO0w
 
     # Current minimum recommendation is 2048 bit, so group 14
     def __init__(self, group=14):
@@ -70,7 +71,7 @@ class DiffieHellman():
 
         # generating the private key
         # WARNING: This does not use truely random numbers like random.SystemRandom() would provide, since its built for MicorPython
-        self.private_key = "%064x" % random.randrange(10**80)
+        self.private_key = "%064x" % random.randrange(10**18)  # should be 10**80, but our version of MicroPython could only handle 10**18
         self.private_key = self.private_key[:64]  # limit string to 64 characters
         self.private_key = int(self.private_key, 16)  # converting hex to int
 
@@ -86,24 +87,3 @@ class DiffieHellman():
         # peer_public_key^priv_key mod n
         key = pow(int(peer_public_key), int(self.private_key), int(self.n))
         return key
-
-
-# def _theory():
-#     # Theory: https://www.youtube.com/watch?v=Yjrfm_oRO0w
-#     g = random.randint(0, 9)
-#
-#     # "The number (n − l)/2 should also be a prime [1253]." Page 298 "Applied Cryptography" Bruce Schneier
-#
-#     n = 1001000000000000
-#
-#     alice_private_key = random.randint(5, 10)
-#     bob_private_key = random.randint(10, 20)
-#
-#     alice_public_key = (g**alice_private_key) % n
-#     bob_public_key = (g**bob_private_key) % n
-#
-#     k_alice = (bob_public_key**alice_private_key) % n
-#     k_bob = (alice_public_key**bob_private_key) % n
-#
-#     assert k_alice == k_bob
-#     print(k_alice == k_bob)

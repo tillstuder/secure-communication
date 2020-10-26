@@ -2,6 +2,7 @@
 from seccom.diffiehellman import DiffieHellman
 from seccom.caesar import CaesarCipher
 from seccom.enigma import EnigmaCipher
+from seccom.des import DESCipher
 
 # Mode selection loop until mode valid
 while True:
@@ -38,6 +39,8 @@ if mode == "demo":
     print("My Public Key:\n--------------\n{}\n--------------\n ".format(my_public_key))
 
     peer_public_key = partner_dh.get_public_key()
+    print("Partner Public Key:\n--------------\n{}\n--------------\n ".format(peer_public_key))
+
     key = my_dh.get_shared_key(peer_public_key)
     print("Our Shared Key:\n--------------\n{}\n--------------\n ".format(key))
 
@@ -78,7 +81,7 @@ while True:
             print("Type unknown!")
 
     # Define Message
-    print("Please enter your Message here:)
+    print("Please enter your Message here:")
     message = input()
 
     # Run Caesar Cypher
@@ -90,7 +93,7 @@ while True:
         else:
             text = cc.decrypt()
             print(
-                "Deine entschlüsselte Nachricht:\n-----------\n{}\n-----------\n".format(text))
+                "Deine entschlüsselte Nachricht:\n-----------\n{}\n-----------\n ".format(text))
 
     # Run Enigma Cypher
     if cypher == "2":
@@ -101,4 +104,30 @@ while True:
         else:
             text = ec.decrypt()
             print(
-                "Deine entschlüsselte Nachricht:\n-----------\n{}\n-----------\n".format(text))
+                "Deine entschlüsselte Nachricht:\n-----------\n{}\n-----------\n ".format(text))
+
+    if cypher == "3":
+        des = DESCipher(key)
+        if crypt_type == "1":
+            text = des.encrypt(message)
+
+            # converting the cypher_text to bits, because not every shell can interpret unicode properly
+            cypher_text_as_bit_list = des._get_bit_list(text)
+            bits = ""
+            for bit in cypher_text_as_bit_list:
+                bits += str(bit)
+
+            print("Deine verschlüsselte Nachricht:\n-----------\nDES Cypher:\n{}\n-----------\nBitte sende diesen Text an deinen Partner".format(bits))
+        else:
+            # converting the bits back to cypher_text
+            ## splitting the bit stream to individual bits (as strings)
+            bits_as_char = [char for char in message]
+
+            ## converting the bits (as strings) to int's
+            bits = [int(char) for char in bits_as_char]
+
+            ## converting the bit list to the actual cypher_text
+            new_message = des._get_string(bits)
+
+            text = des.decrypt(new_message)
+            print("Deine entschlüsselte Nachricht:\n-----------\n{}\n-----------\n ".format(text))
