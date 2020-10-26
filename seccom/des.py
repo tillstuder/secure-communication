@@ -135,6 +135,8 @@ class DESCipher():
     """
 
     def __init__(self, key):
+        key = str(key)  # converts the key to a string
+        
         if len(key) < 8:
             raise Warning("The key should be 64 bits long")
         elif len(key) > 8:
@@ -174,7 +176,8 @@ class DESCipher():
             block = self._get_bit_list(block)
 
             # The Initial Permutation
-            block = self._permutate_or_expand(block, block_initial_premutation_matrix)
+            block = self._permutate_or_expand(
+                block, block_initial_premutation_matrix)
             left, right = self._nsplit(block, 32)
 
             # the 16 rounds of DES
@@ -379,8 +382,8 @@ class DESCipher():
 
 if __name__ == '__main__':
     # testing if the module works, this section is only called if the des.py file is called directly and not just the DESService().
-    key = "783747212925014384"
-    message = "sodifjoisdjfoisdjfoisjdfoijsdfoijsdofijsoidfjosdifjosidjfoisdjfos"
+    key = '45886999'
+    message = "Hello World!"
 
     DESService = DESCipher(key)
     cypher_text = DESService.encrypt(message)
