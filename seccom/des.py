@@ -124,7 +124,7 @@ class DESCipher():
     Use the DES Cipher Service like this:
 
     des = DESCipher(key)
-        key needs to be 64 bits long
+        key needs to be at least 64 bits long, if longer it is cut to 64 bits
 
     With the Service you can:
         encrypt messages:
@@ -139,24 +139,27 @@ class DESCipher():
             raise Warning("The key should be 64 bits long")
         elif len(key) > 8:
             # If key size is above 64 bits, cut it to 64 bits
-            print("INFO: Key was cut to 64bits in length.")
             key = key[:8]
+            print("INFO: Key was cut to 64bits in length.")
 
         self.password = key
 
     def encrypt(self, plain_text):
+        """encrypt the give plain text using DES"""
         return self._main(plain_text, encrypt)
 
     def decrypt(self, cypher_text):
+        """decrypt the give cypher text using DES"""
         return self._main(cypher_text, decrypt)
 
     def _main(self, text, action):
         self.text = text
 
         if action == encrypt:
+            # add padding so the message is dividable by 8 (64bits)
             self._add_padding()
         elif len(self.text) % 8 != 0:
-            # If data isn't padded then it should be dividable by 8
+            # If data isn't padded then it should be dividable by 8 (64bits)
             raise Warning("The data size should be dividable by 8.")
 
         # The Key Transformation
@@ -165,17 +168,16 @@ class DESCipher():
         # splitting the text in blocks of 64 bits
         text_blocks = self._nsplit(self.text, 8)
 
-        result = []
+        result = []  # initializing the result list
         for block in text_blocks:
             # convert input
             block = self._get_bit_list(block)
 
             # The Initial Permutation
-            block = self._permutate_or_expand(
-                block, block_initial_premutation_matrix)
+            block = self._permutate_or_expand(block, block_initial_premutation_matrix)
             left, right = self._nsplit(block, 32)
 
-            tmp = None
+            # the 16 rounds of DES
             rounds = range(16)
             for round in rounds:
                 # The Expansion Permutation
@@ -214,6 +216,7 @@ class DESCipher():
         final_res = self._get_string(result)
 
         if action == decrypt:
+            # remove the padding
             final_res = self._remove_padding(final_res)
         else:
             pass
@@ -375,6 +378,7 @@ class DESCipher():
 
 
 if __name__ == '__main__':
+    # testing if the module works, this section is only called if the des.py file is called directly and not just the DESService().
     key = "783747212925014384"
     message = "sodifjoisdjfoisdjfoisjdfoijsdfoijsdofijsoidfjosdifjosidjfoisdjfos"
 
