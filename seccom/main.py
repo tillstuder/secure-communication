@@ -95,6 +95,7 @@ while True:
             print(
                 "Deine entschlüsselte Nachricht:\n-----------\n{}\n-----------\n ".format(text))
 
+    # Run Enigma Cypher
     if cypher == "2":
         ec = EnigmaCipher(key, peer_public_key, my_public_key, message, mode)
         if crypt_type == "1":
