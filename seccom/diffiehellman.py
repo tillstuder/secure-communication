@@ -71,7 +71,7 @@ class DiffieHellman():
 
         # generating the private key
         # WARNING: This does not use truely random numbers like random.SystemRandom() would provide, since its built for MicorPython
-        self.private_key = "%064x" % random.randrange(10**80)
+        self.private_key = "%064x" % random.randrange(10**18)  # should be 10**80, but our version of MicroPython could only handle 10**18
         self.private_key = self.private_key[:64]  # limit string to 64 characters
         self.private_key = int(self.private_key, 16)  # converting hex to int
 

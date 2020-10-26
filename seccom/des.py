@@ -153,6 +153,12 @@ class DESCipher():
     def _main(self, text, action):
         self.text = text
 
+        if action == encrypt:
+            self._add_padding()
+        elif len(self.text) % 8 != 0:
+            # If data isn't padded then it should be dividable by 8
+            raise Warning("The data size should be dividable by 8.")
+
         # The Key Transformation
         self._generate_subkeys()
 
@@ -206,6 +212,11 @@ class DESCipher():
 
         # convertign the blocks into a string
         final_res = self._get_string(result)
+
+        if action == decrypt:
+            final_res = self._remove_padding(final_res)
+        else:
+            pass
 
         return final_res
 
@@ -349,10 +360,23 @@ class DESCipher():
         ]
         return sub_lists
 
+    def _add_padding(self):
+        """adds padding to the input text as per PKCS5 specification: [RFC 2898](https://tools.ietf.org/html/rfc2898)"""
+        chars_over_64_bit = len(self.text) % 8
+        padding_length = 8 - chars_over_64_bit
+        self.text += padding_length * chr(padding_length)
+
+    def _remove_padding(self, data):
+        """removes padding as per PKCS5 specification: [RFC 2898](https://tools.ietf.org/html/rfc2898)"""
+        last_bit = data[-1]
+        pad_len = ord(last_bit)
+        data_without_padding = data[:-pad_len]
+        return data_without_padding
+
 
 if __name__ == '__main__':
-    key = "qwe_fgäs"
-    message = "sodifjoisdjfoisdjfoisjdfoijsdfoijsdofijsoidfjosdifjosidjfoisdjfo"
+    key = "783747212925014384"
+    message = "sodifjoisdjfoisdjfoisjdfoijsdfoijsdofijsoidfjosdifjosidjfoisdjfos"
 
     DESService = DESCipher(key)
     cypher_text = DESService.encrypt(message)
