@@ -142,7 +142,6 @@ class DESCipher():
         elif len(key) > 8:
             # If key size is above 64 bits, cut it to 64 bits
             key = key[:8]
-            print("INFO: Key was cut to 64bits in length.")
 
         self.password = key
 
@@ -378,18 +377,3 @@ class DESCipher():
         pad_len = ord(last_bit)
         data_without_padding = data[:-pad_len]
         return data_without_padding
-
-
-if __name__ == '__main__':
-    # testing if the module works, this section is only called if the des.py file is called directly and not just the DESService().
-    key = '45886999'
-    message = "Hello World!"
-
-    DESService = DESCipher(key)
-    cypher_text = DESService.encrypt(message)
-    plain_text = DESService.decrypt(cypher_text)
-
-    if message == plain_text:
-        print("Works!")
-    else:
-        print("Doesn't work :/")
