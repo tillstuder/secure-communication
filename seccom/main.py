@@ -23,9 +23,10 @@ if mode == "real":
 
     # Creating the keys
     my_public_key = dh.get_public_key()
-    print("My Public Key:\n--------------\n{}\n--------------\n ".format(my_public_key))
+    print("My Public Key:\n--------------\n{}\n--------------\nSend this Key to your Partner".format(my_public_key))
 
     peer_public_key = int(input("My Peers public Key: "))
+
     key = dh.get_shared_key(peer_public_key)
     print("Our Shared Key:\n--------------\n{}\n--------------\n ".format(key))
 
@@ -89,23 +90,22 @@ while True:
         cc = CaesarCipher(message, key)
         if crypt_type == "1":
             text = cc.encrypt()
-            print("Deine verschlüsselte Nachricht:\n-----------\nCaesar Cypher:\n{}\n-----------\nBitte sende diesen Text an deinen Partner".format(text))
+            print("Your encrypted Message:\n-----------\nCaesar Cypher:\n{}\n-----------\nPlease send this to your Partner".format(text))
         else:
             text = cc.decrypt()
-            print(
-                "Deine entschlüsselte Nachricht:\n-----------\n{}\n-----------\n ".format(text))
+            print("Your decrypted Message:\n-----------\n{}\n-----------\n ".format(text))
 
     # Run Enigma Cypher
     if cypher == "2":
         ec = EnigmaCipher(key, peer_public_key, my_public_key, message, mode)
         if crypt_type == "1":
             text = ec.encrypt()
-            print("Deine verschlüsselte Nachricht:\n-----------\nEnigma Cypher:\n{}\n-----------\nBitte sende diesen Text an deinen Partner".format(text))
+            print("Your encrypted Message:\n-----------\nEnigma Cypher:\n{}\n-----------\nPlease send this to your Partner".format(text))
         else:
             text = ec.decrypt()
-            print(
-                "Deine entschlüsselte Nachricht:\n-----------\n{}\n-----------\n ".format(text))
+            print("Your decrypted Message:\n-----------\n{}\n-----------\n ".format(text))
 
+    # Run DES Cypher
     if cypher == "3":
         des = DESCipher(key)
         if crypt_type == "1":
@@ -117,7 +117,7 @@ while True:
             for bit in cypher_text_as_bit_list:
                 bits += str(bit)
 
-            print("Deine verschlüsselte Nachricht:\n-----------\nDES Cypher:\n{}\n-----------\nBitte sende diesen Text an deinen Partner".format(bits))
+            print("Your encrypted Message:\n-----------\nDES Cypher:\n{}\n-----------\nPlease send this to your Partner".format(bits))
         else:
             # converting the bits back to cypher_text
             ## splitting the bit stream to individual bits (as strings)
@@ -130,4 +130,4 @@ while True:
             new_message = des._get_string(bits)
 
             text = des.decrypt(new_message)
-            print("Deine entschlüsselte Nachricht:\n-----------\n{}\n-----------\n ".format(text))
+            print("Your decrypted Message:\n-----------\n{}\n-----------\n ".format(text))
