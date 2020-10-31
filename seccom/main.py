@@ -105,6 +105,7 @@ while True:
             text = ec.decrypt()
             print("Your decrypted Message:\n-----------\n{}\n-----------\n ".format(text))
 
+    # Run DES Cypher
     if cypher == "3":
         des = DESCipher(key)
         if crypt_type == "1":
