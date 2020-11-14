@@ -17,6 +17,7 @@ class EnigmaCipher():
         ec.decrypt()
     """
     def __init__(self, key, peer_pkey, my_pkey, message, mode):
+        #Define (shuffeled) Alphabets of the Rotors and Reflector
         self.alpha = ("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz .,!?()[]@#¢´`^+-*/'$_:;üÜäÄöÖéÉèÈáÁç&1234567890")
         self.r1alpha = ("C10:z?3fG(é)&eTI´;h7MKg]yjáÄA+5äo#Rr u@iÉ.ZmFSY*ÖDöaswÜ[N-¢nL4$ÁH,lEp68üVbPèqOçB/xÈkX!2JcdU'Q9`^tW_v")
         self.r2alpha = ("(L^q8gSçZ2hr?jKkYfzs$tCÖu/'+v9Wä*GJAHbOiénNáeöQ¢-0&@üXm3Uè5.7#]_4EÁDdcÜxplw!6[P;)B´,V` oFRMaIyTÄÉ1:È")
